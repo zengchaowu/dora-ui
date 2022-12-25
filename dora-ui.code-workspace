@@ -1,0 +1,49 @@
+{
+	"folders": [
+		{
+			"name": "✨ dora-ui",
+			"path": "."
+		},
+		{
+			"name": "🚀 demo",
+			"path": "apps/demo"
+		},
+		{
+			"name": "@dora-ui/button",
+			"path": "components/button"
+		},
+		{
+			"name": "@dora-ui/form",
+			"path": "components/form"
+		},
+		{
+			"name": "@dora-ui/input",
+			"path": "components/input"
+		},
+		{
+			"name": "@dora-ui/list",
+			"path": "components/list"
+		},
+		{
+			"name": "@dora-ui/modal",
+			"path": "components/modal"
+		},
+		{
+			"name": "@dora-ui/page",
+			"path": "components/page"
+		},
+		{
+			"name": "@dora-ui/swiper",
+			"path": "components/swiper"
+		},
+		{
+			"name": "@dora-ui/table",
+			"path": "components/table"
+		},
+		{
+			"name": "@dora-ui/tree",
+			"path": "components/tree"
+		}
+	],
+	"settings": {}
+}
