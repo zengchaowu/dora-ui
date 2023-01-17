@@ -8,10 +8,12 @@ importers:
   apps/demo:
     specifiers:
       '@dora-ui/button': workspace:^1.0.0
+      '@dora-ui/list': workspace:^1.0.0
       '@unocss/nuxt': ^0.48.0
       nuxt: 3.0.0
     dependencies:
       '@dora-ui/button': link:../../components/button
+      '@dora-ui/list': link:../../components/list
     devDependencies:
       '@unocss/nuxt': 0.48.0
       nuxt: 3.0.0

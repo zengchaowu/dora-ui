@@ -12,6 +12,7 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
-    "@dora-ui/button": "workspace:^1.0.0"
+    "@dora-ui/button": "workspace:^1.0.0",
+    "@dora-ui/list": "workspace:^1.0.0"
   }
 }

@@ -45,5 +45,7 @@
 			"path": "components/tree"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true
+	}
 }
