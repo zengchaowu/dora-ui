@@ -9,23 +9,21 @@ import DoraList from "@dora-ui/list";
 //   { label: "S" },
 // ]);
 
-const listData = []
+const listData = [];
 
-for (let i = 0; i <1000; i++) {
+for (let i = 0; i < 10000; i++) {
   listData.push({
     id: i,
-    sort: Math.floor((Math.random()*1000)%1000)
-  })
+    sort: Math.floor((Math.random() * 1000) % 1000),
+  });
 }
 
-console.log(listData)
-
-
+console.log(listData);
 </script>
 
 <template>
   <div class="flex flex-col gap-5">
     <!-- <DoraButton v-for="button in buttons" :payload="button" /> -->
-    <DoraList :payload="{list: listData}" />
+    <DoraList :payload="{ type: 1, list: listData }" />
   </div>
 </template>

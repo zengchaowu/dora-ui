@@ -6,6 +6,6 @@ const props = defineProps(["payload"]);
 </script>
 
 <template>
-  <TypeOne v-if="payload?.type === 1" />
-  <TypeTwo v-else-if="payload?.type === 2" />
+  <TypeOne v-if="payload?.type === 1" :payload="payload" />
+  <TypeTwo v-else-if="payload?.type === 2" :payload="payload" />
 </template>
