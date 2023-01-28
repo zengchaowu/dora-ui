@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, onUnmounted } from "vue";
 
 const props = defineProps(["payload"]);
 
@@ -14,16 +14,24 @@ const visibleEnd = ref(0);
 const visibleList = ref([]);
 
 const container = ref(null);
+
+const onScroll = () => {
+  const { scrollTop, clientHeight } = container.value;
+  visibleStart.value = Math.floor(scrollTop / 160);
+  visibleEnd.value = Math.ceil((scrollTop + clientHeight) / 160);
+  visibleList.value = props.payload?.list?.slice(
+    visibleStart.value,
+    visibleEnd.value
+  );
+};
+
 onMounted(() => {
-  container.value.addEventListener("scroll", (e) => {
-    const { scrollTop, clientHeight } = container.value;
-    visibleStart.value = Math.floor(scrollTop / 160);
-    visibleEnd.value = Math.ceil((scrollTop + clientHeight) / 160);
-    visibleList.value = props.payload?.list?.slice(
-      visibleStart.value,
-      visibleEnd.value
-    );
-  });
+  container.value.addEventListener("scroll", onScroll);
+  onScroll();
+});
+
+onUnmounted(() => {
+  container.value.removeEventListener("scroll", onScroll);
 });
 </script>
 
