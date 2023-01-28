@@ -9,6 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "vue-demi": "^0.13.11"
+  },
   "devDependencies": {
     "vue": "^3.2.45"
   }
