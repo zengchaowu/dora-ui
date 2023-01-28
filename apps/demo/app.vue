@@ -11,7 +11,7 @@ import DoraList from "@dora-ui/list";
 
 const listData = [];
 
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 1000000; i++) {
   listData.push({
     id: i,
     sort: Math.floor((Math.random() * 1000) % 1000),
@@ -24,6 +24,15 @@ console.log(listData);
 <template>
   <div class="flex flex-col gap-5">
     <!-- <DoraButton v-for="button in buttons" :payload="button" /> -->
-    <DoraList :payload="{ type: 1, list: listData }" />
+    <DoraList
+      class="h-100"
+      :payload="{
+        type: 1,
+        list: listData,
+        cell: {
+          height: 10,
+        },
+      }"
+    />
   </div>
 </template>

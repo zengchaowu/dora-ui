@@ -1,17 +1,45 @@
 <script setup>
+import { ref, reactive, onMounted } from "vue";
+
 const props = defineProps(["payload"]);
 
-const visibleList = [];
+const contentStyle = reactive({
+  height: `${
+    (props.payload?.cell?.height ?? 0) * (props.payload?.list?.length ?? 0)
+  }rem`,
+});
+
+const visibleStart = ref(0);
+const visibleEnd = ref(0);
+const visibleList = ref([]);
+
+const container = ref(null);
+onMounted(() => {
+  container.value.addEventListener("scroll", (e) => {
+    const { scrollTop, clientHeight } = container.value;
+    visibleStart.value = Math.floor(scrollTop / 160);
+    visibleEnd.value = Math.ceil((scrollTop + clientHeight) / 160);
+    visibleList.value = props.payload?.list?.slice(
+      visibleStart.value,
+      visibleEnd.value
+    );
+  });
+});
 </script>
 
 <template>
   <div ref="container" class="overflow-y-auto">
-    <div ref="content" class="flex flex-col">
+    <div ref="content" class="relative" :style="contentStyle">
       <div
-        v-for="item in payload.list"
-        :style="{ height: `${payload?.cell?.height ?? 100}px` }"
+        v-for="(item, index) in visibleList"
+        :style="{
+          position: 'absolute',
+          top: `${(visibleStart + index) * payload?.cell?.height}rem`,
+          width: '100%',
+          height: `${payload?.cell?.height}rem`,
+        }"
       >
-        {{ item }}
+        {{ item.id }}
       </div>
     </div>
   </div>
