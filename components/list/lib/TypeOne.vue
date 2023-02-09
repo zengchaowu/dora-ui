@@ -1,7 +1,17 @@
-<script setup>
-import { ref, reactive, onMounted, onUnmounted } from "vue-demi";
+<script setup lang="ts">
+import rem2px from "../functions/rem2px";
+import { ref, reactive, onMounted, onUnmounted } from "vue";
 
-const props = defineProps(["payload"]);
+interface Props {
+  payload?: {
+    cell?: {
+      height?: number;
+    };
+    list?: any[];
+  };
+}
+
+const props = defineProps<Props>();
 
 const contentStyle = reactive({
   height: `${
@@ -9,16 +19,21 @@ const contentStyle = reactive({
   }rem`,
 });
 
+const cellHeightInPx = rem2px(props.payload?.cell?.height ?? 0);
+
 const visibleStart = ref(0);
 const visibleEnd = ref(0);
-const visibleList = ref([]);
+const visibleList = ref<any[]>();
 
-const container = ref(null);
+const container = ref<any>(null);
 
 const onScroll = () => {
   const { scrollTop, clientHeight } = container.value;
-  visibleStart.value = Math.floor(scrollTop / 160);
-  visibleEnd.value = Math.ceil((scrollTop + clientHeight) / 160);
+  visibleStart.value = Math.max(Math.floor(scrollTop / cellHeightInPx) - 3, 0);
+  visibleEnd.value = Math.min(
+    Math.ceil((scrollTop + clientHeight) / cellHeightInPx) + 3,
+    props.payload?.list?.length ?? 0
+  );
   visibleList.value = props.payload?.list?.slice(
     visibleStart.value,
     visibleEnd.value
@@ -42,7 +57,7 @@ onUnmounted(() => {
         v-for="(item, index) in visibleList"
         :style="{
           position: 'absolute',
-          top: `${(visibleStart + index) * payload?.cell?.height}rem`,
+          top: `${(visibleStart + index) * (payload?.cell?.height ?? 0)}rem`,
           width: '100%',
           height: `${payload?.cell?.height}rem`,
         }"

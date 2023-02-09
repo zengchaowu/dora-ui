@@ -1,8 +1,7 @@
 {
   "name": "@dora-ui/list",
   "version": "1.0.0",
-  "description": "A Virtual Scroll List Component For Vue2 & Vue3.",
-  "main": "dist/common/index.js",
+  "description": "A Virtual Scroll List Component For Vue3.",
   "files": [
     "lib",
     "src",
@@ -10,9 +9,6 @@
     "types"
   ],
   "scripts": {
-    "fix:demi": "vue-demi-fix",
-    "test:2": "vue-demi-switch 2 vue2 && jest",
-    "test:3": "vue-demi-switch 3 && jest",
     "build": "rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm -d",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
@@ -21,12 +17,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "vue-demi": "latest"
-  },
   "devDependencies": {
     "typescript": "^4.9.4",
-    "vue": "^3.2.45",
-    "vue2": "npm:vue@2"
+    "vue": "^3.0.0"
   }
 }

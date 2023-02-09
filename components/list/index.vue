@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TypeOne from "./lib/TypeOne";
 import TypeTwo from "./lib/TypeTwo";
 
