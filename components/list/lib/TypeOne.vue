@@ -21,6 +21,7 @@ const contentStyle = reactive({
 
 const cellHeightInPx = rem2px(props.payload?.cell?.height ?? 0);
 
+const needLayout = ref(false);
 const visibleStart = ref(0);
 const visibleEnd = ref(0);
 const visibleList = ref<any[]>();
@@ -28,6 +29,10 @@ const visibleList = ref<any[]>();
 const container = ref<any>(null);
 
 const onScroll = () => {
+  needLayout.value = true;
+};
+
+const layoutViews = () => {
   const { scrollTop, clientHeight } = container.value;
   visibleStart.value = Math.max(Math.floor(scrollTop / cellHeightInPx) - 3, 0);
   visibleEnd.value = Math.min(
@@ -39,6 +44,20 @@ const onScroll = () => {
     visibleEnd.value
   );
 };
+
+const scrollCheckInterval = setInterval(() => {
+  if (needLayout) {
+    layoutViews();
+  }
+}, 50);
+const refreshInterval = setInterval(() => {
+  needLayout.value = true;
+}, 300);
+
+onUnmounted(() => {
+  scrollCheckInterval && clearInterval(scrollCheckInterval);
+  refreshInterval && clearInterval(refreshInterval);
+});
 
 onMounted(() => {
   container.value.addEventListener("scroll", onScroll);
