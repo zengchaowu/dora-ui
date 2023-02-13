@@ -2,16 +2,14 @@
 import rem2px from "../functions/rem2px";
 import { ref, reactive, onMounted, onUnmounted } from "vue";
 
-interface Props {
+const props = defineProps<{
   payload?: {
     cell?: {
       height?: number;
     };
     list?: any[];
   };
-}
-
-const props = defineProps<Props>();
+}>();
 
 const contentStyle = reactive({
   height: `${

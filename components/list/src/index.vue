@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import TypeOne from "./lib/TypeOne";
 import TypeTwo from "./lib/TypeTwo";
-
-const props = defineProps(["payload"]);
+defineProps(["payload"]);
 </script>
 
 <template>

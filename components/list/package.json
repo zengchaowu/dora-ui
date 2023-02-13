@@ -2,12 +2,7 @@
   "name": "@dora-ui/list",
   "version": "1.0.0",
   "description": "A Virtual Scroll List Component For Vue3.",
-  "files": [
-    "lib",
-    "src",
-    "packages",
-    "types"
-  ],
+  "main": "index.ts",
   "scripts": {
     "build": "rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm -d",
@@ -18,7 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.8.4",
     "typescript": "^4.9.4",
-    "vue": "^3.0.0"
+    "vue": "^3.2.36"
   }
 }
