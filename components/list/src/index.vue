@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import TypeOne from "./components/TypeOne.vue";
-import TypeTwo from "./components/TypeTwo.vue";
-defineProps(["payload"]);
+import Static from "./components/Static.vue";
+import Dynamic from "./components/Dynamic.vue";
+
+defineProps<{
+  payload: {
+    type: "static" | "dynamic";
+  };
+}>();
 </script>
 
 <template>
-  <TypeOne v-if="payload?.type === 1" :payload="payload" />
-  <TypeTwo v-else-if="payload?.type === 2" :payload="payload" />
+  <Static v-if="payload.type === 'static'" :payload="payload" />
+  <Dynamic v-else-if="payload.type === 'dynamic'" :payload="payload" />
 </template>

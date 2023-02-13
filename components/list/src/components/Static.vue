@@ -4,6 +4,7 @@ import { ref, reactive, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
   payload?: {
+    type: any;
     cell?: {
       height?: number;
     };
