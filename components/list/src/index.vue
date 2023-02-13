@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TypeOne from "./lib/TypeOne";
-import TypeTwo from "./lib/TypeTwo";
+import TypeOne from "./components/TypeOne.vue";
+import TypeTwo from "./components/TypeTwo.vue";
 defineProps(["payload"]);
 </script>
 
