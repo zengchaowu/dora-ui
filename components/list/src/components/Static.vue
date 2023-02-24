@@ -5,15 +5,14 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 
 const props = defineProps<{ payload?: TypePayload }>();
 
-const cellHeightInPx = ref(0);
-const needLayout = ref(false);
 const visibleStart = ref(0);
 const visibleEnd = ref(0);
-const container = ref<any>();
 const visibleList = computed(() => {
   return props.payload?.list?.slice(visibleStart.value, visibleEnd.value);
 });
 
+const cellHeightInPx = ref(0);
+const container = ref();
 // 监听滑动事件，如果有滑动，则将滑动标识位置为true。
 onMounted(() => {
   // 挂载之后计算cell的像素高度，用于计算可见范围
@@ -26,22 +25,6 @@ onUnmounted(() => {
   container.value.removeEventListener("scroll", onScroll);
 });
 const onScroll = () => {
-  needLayout.value = true;
-};
-
-// 定时去检测滑动标识，如果为true就重新layout。
-const scrollCheckInterval = ref<any>(null);
-onMounted(() => {
-  scrollCheckInterval.value = setInterval(() => {
-    if (needLayout) {
-      layoutViews();
-    }
-  }, 50);
-});
-onUnmounted(() => {
-  scrollCheckInterval && clearInterval(scrollCheckInterval);
-});
-const layoutViews = () => {
   const { scrollTop, clientHeight } = container.value || {};
   if (!(clientHeight > 0) || !(cellHeightInPx.value > 0)) {
     return;

@@ -27,7 +27,7 @@ for (let i = 0; i < 1000000; i++) {
       :payload="{
         type: 'static',
         cell: {
-          height: 10,
+          height: 1,
         },
         list: listData,
       }"
