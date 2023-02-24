@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // import DoraButton from "@dora-ui/button";
 import DoraList from "@dora-ui/list";
 
@@ -9,7 +9,7 @@ import DoraList from "@dora-ui/list";
 //   { label: "S" },
 // ]);
 
-const listData = [];
+const listData: any[] = [];
 
 for (let i = 0; i < 1000000; i++) {
   listData.push({
@@ -17,8 +17,6 @@ for (let i = 0; i < 1000000; i++) {
     sort: Math.floor((Math.random() * 1000) % 1000),
   });
 }
-
-console.log(listData);
 </script>
 
 <template>
@@ -27,11 +25,11 @@ console.log(listData);
     <DoraList
       class="h-100"
       :payload="{
-        type: 1,
-        list: listData,
+        type: 'static',
         cell: {
           height: 10,
         },
+        list: listData,
       }"
     />
   </div>

@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import Static from "./components/Static.vue";
-import Dynamic from "./components/Dynamic.vue";
+import { TypePayload } from "./types";
 
-defineProps<{
-  payload: {
-    type: "static" | "dynamic";
-  };
-}>();
+defineProps<{ payload?: TypePayload }>();
 </script>
 
 <template>
-  <Static v-if="payload.type === 'static'" :payload="payload" />
-  <Dynamic v-else-if="payload.type === 'dynamic'" :payload="payload" />
+  <Static v-if="payload?.type === 'static'" :payload="payload" />
 </template>
