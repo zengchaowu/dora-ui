@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TypePayload } from "../types";
 import getDocumentFontSize from "../functions/getDocumentFontSize";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 
 const props = defineProps<{ payload?: TypePayload }>();
 
@@ -9,8 +9,10 @@ const cellHeightInPx = ref(0);
 const needLayout = ref(false);
 const visibleStart = ref(0);
 const visibleEnd = ref(0);
-const visibleList = ref<any[]>();
 const container = ref<any>();
+const visibleList = computed(() => {
+  return props.payload?.list?.slice(visibleStart.value, visibleEnd.value);
+});
 
 // 监听滑动事件，如果有滑动，则将滑动标识位置为true。
 onMounted(() => {
@@ -51,10 +53,6 @@ const layoutViews = () => {
   visibleEnd.value = Math.min(
     Math.ceil((scrollTop + clientHeight) / cellHeightInPx.value) + 3,
     props.payload?.list?.length ?? 0
-  );
-  visibleList.value = props.payload?.list?.slice(
-    visibleStart.value,
-    visibleEnd.value
   );
 };
 </script>
