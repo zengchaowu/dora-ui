@@ -17,8 +17,10 @@ module.exports = {
     borderRadius: sizes,
     colors: {
       primary: '#9751ff',
+      border: '#d9d9d9',
       text: '#000000',
       textInverse: '#ffffff',
+      bgHover: '#d9d9d9',
     },
   },
   plugins: [],

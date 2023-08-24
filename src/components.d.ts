@@ -5,7 +5,15 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DoraButtonType } from "./components/dora-button/dora-button";
+export { DoraButtonType } from "./components/dora-button/dora-button";
 export namespace Components {
+    interface DoraButton {
+        /**
+          * 类型
+         */
+        "type"?: DoraButtonType;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +30,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLDoraButtonElement extends Components.DoraButton, HTMLStencilElement {
+    }
+    var HTMLDoraButtonElement: {
+        prototype: HTMLDoraButtonElement;
+        new (): HTMLDoraButtonElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +43,17 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "dora-button": HTMLDoraButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface DoraButton {
+        /**
+          * 类型
+         */
+        "type"?: DoraButtonType;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +69,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "dora-button": DoraButton;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +77,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dora-button": LocalJSX.DoraButton & JSXBase.HTMLAttributes<HTMLDoraButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
