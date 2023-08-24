@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'dora-ui',
+  globalStyle: 'www/tailwind.css',
   outputTargets: [
     {
       type: 'dist',
